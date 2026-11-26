@@ -1,0 +1,40 @@
+.app { max-width: 500px; margin: 0 auto; padding: 16px; text-align: center; }
+h1 { margin: 4px 0; letter-spacing: 0.3em; font-size: clamp(1.6rem, 6vw, 2.2rem); }
+.toast { min-height: 1.5em; margin: 4px 0 8px; font-weight: 600; color: #f5c542; }
+
+/* Board */
+.board { display: grid; gap: 6px; margin: 0 auto 20px; width: min(100%, 330px); }
+.row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.tile {
+  aspect-ratio: 1;
+  display: grid; place-items: center;
+  border: 2px solid #3a3a3c;
+  font-size: clamp(1.5rem, 8vw, 2rem); font-weight: 700;
+}
+.tile.filled { border-color: #818384; animation: pop 0.1s ease; }
+@keyframes pop { 50% { transform: scale(1.1); } }
+
+/* Conditional state classes: the same three colours for tiles and keys */
+.tile.correct, .key.correct { background: #538d4e; border-color: #538d4e; }
+.tile.present, .key.present { background: #b59f3b; border-color: #b59f3b; }
+.tile.absent,  .key.absent  { background: #3a3a3c; border-color: #3a3a3c; }
+
+/* On-screen keyboard */
+.keyboard { display: grid; gap: 6px; }
+.keyboard-row { display: flex; justify-content: center; gap: 5px; }
+.key {
+  flex: 1 1 0; max-width: 44px; height: 54px;
+  border: 0; border-radius: 4px;
+  background: #818384; color: #fff; font-weight: 700; cursor: pointer;
+}
+.key.wide { flex: 1.6 1 0; max-width: 68px; font-size: 0.75rem; }
+.key:hover { filter: brightness(1.15); }
+
+/* Result modal */
+.overlay { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, 0.7); }
+.modal { width: min(90%, 360px); padding: 28px; border-radius: 12px; background: #1f1f22; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); }
+.modal h2 { margin: 0 0 8px; }
+.reveal { font-size: 2rem; font-weight: 800; letter-spacing: 0.2em; color: #538d4e; margin: 8px 0 16px; }
+.primary { margin-top: 12px; padding: 10px 22px; border: 0; border-radius: 6px; background: #538d4e; color: #fff; font-weight: 700; cursor: pointer; }
+
+@media (max-width: 480px) { .key { height: 48px; } }
